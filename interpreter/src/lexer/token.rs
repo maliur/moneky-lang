@@ -1,44 +1,47 @@
-#[derive(Debug, PartialEq)]
-pub enum TokenType {
-    ASSIGN,
-    COMMA,
-    EOF,
-    FUNCTION,
-    IDENT,
-    ILLEGAL,
-    INT,
-    LBRACE,
-    LET,
-    LPAREN,
-    PLUS,
-    RBRACE,
-    RPAREN,
-    SEMICOLON,
-}
+#[derive(Debug, Clone, PartialEq)]
+pub enum Token {
+    Illegal,
+    Blank,
+    Eof,
 
-impl TokenType {
-    pub fn as_str(&self) -> &'static str {
-        match self {
-            TokenType::ASSIGN => "=",
-            TokenType::COMMA => ",",
-            TokenType::EOF => "",
-            TokenType::FUNCTION => "FUNCTION",
-            TokenType::IDENT => "IDENT",
-            TokenType::ILLEGAL => "ILLEGAL",
-            TokenType::INT => "INT",
-            TokenType::LBRACE => "{",
-            TokenType::LET => "LET",
-            TokenType::LPAREN => "(",
-            TokenType::PLUS => "+",
-            TokenType::RBRACE => "}",
-            TokenType::RPAREN => ")",
-            TokenType::SEMICOLON => ";",
-        }
-    }
-}
+    // Identifiers + literals
+    Ident(String),
+    Int(i64),
+    String(String),
+    Bool(bool),
 
-#[derive(Debug)]
-pub struct Token<'a> {
-    pub token_type: TokenType,
-    pub literal: &'a str,
+    // Statements
+    Assign,
+    If,
+    Else,
+
+    // Operators
+    Plus,
+    Minus,
+    Bang,
+    Asterisk,
+    Slash,
+
+    Equal,
+    NotEqual,
+    LessThan,
+    LessThanEqual,
+    GreaterThan,
+    GreaterThanEqual,
+
+    // Delimiters
+    Comma,
+    Colon,
+    Semicolon,
+    Lparen,
+    Rparen,
+    Lbrace,
+    Rbrace,
+    Lbracket,
+    Rbracket,
+
+    // Reseved keywords
+    Func,
+    Let,
+    Return,
 }
